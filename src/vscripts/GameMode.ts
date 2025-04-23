@@ -50,8 +50,8 @@ export class GameMode {
     }
 
     private configure(): void {
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 3);
-        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 3);
+        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 4);
+        GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 0);
 
         GameRules.SetShowcaseTime(0);
         GameRules.SetHeroSelectionTime(heroSelectionTime);
@@ -61,11 +61,11 @@ export class GameMode {
         const state = GameRules.State_Get();
 
         // Add 4 bots to lobby in tools
-        if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
-            for (let i = 0; i < 4; i++) {
-                Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
-            }
-        }
+        // if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
+        //     for (let i = 0; i < 4; i++) {
+        //         Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
+        //     }
+        // }
 
         if (state === GameState.CUSTOM_GAME_SETUP) {
             // Automatically skip setup in tools
@@ -95,15 +95,36 @@ export class GameMode {
         // Do some stuff here
     }
 
-    private OnNpcSpawned(event: NpcSpawnedEvent) {
+    public OnNpcSpawned(event: NpcSpawnedEvent) {
+        
         // After a hero unit spawns, apply modifier_panic for 8 seconds
-        const unit = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
+        const npc = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC; // Cast to npc since this is the 'npc_spawned' event
         // Give all real heroes (not illusions) the meepo_earthbind_ts_example spell
-        if (unit.IsRealHero()) {
-            if (!unit.HasAbility("meepo_earthbind_ts_example")) {
-                // Add lua ability to the unit
-                unit.AddAbility("meepo_earthbind_ts_example");
-            }
+        // if (unit.IsRealHero()) {
+        //     if (!unit.HasAbility("meepo_earthbind_ts_example")) {
+        //         // Add lua ability to the unit
+        //         unit.AddAbility("meepo_earthbind_ts_example");
+        //     }
+        // }
+        //print("[BAREBONES] NPC Spawned");
+        //DeepPrintTable(event);
+
+        //const npc = EntIndexToHScript(keys.entindex);
+        if (npc.IsRealHero()) {
+        } else if (npc.GetUnitName() == "npc_dota_neutral_kobold") {
+            Timers.CreateTimer(() => {
+                const units = FindUnitsInRadius(npc.GetTeamNumber(), npc.GetAbsOrigin(), undefined, 500,
+                                                UnitTargetTeam.ENEMY, UnitTargetType.BASIC | UnitTargetType.HERO,
+                                                UnitTargetFlags.NONE, FindOrder.ANY, false);
+                
+                for (const unit of units) {
+                    unit.ForceKill(true);
+                }
+            });
         }
+        
     }
+
+    
 }
+
