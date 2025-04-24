@@ -19,10 +19,10 @@
 	//=================================================================================================================
 	// HERO: Lina
 	//=================================================================================================================
-	"npc_dota_hero_lina_lua"
+	"npc_dota_hero_lina_witch"
 	{
 		"override_hero"					"npc_dota_hero_lina"			// Hero to override
-		"Ability1"				"typescript_skywrath_mage_arcane_bolt.lua"	
+		"Ability1"				"typescript_skywrath_mage_arcane_bolt"	
 		"Ability2"  			""
 		"Ability3"  			""
 		"Ability4"  			""
@@ -33,11 +33,11 @@
 	//=================================================================================================================
 	// HERO: Meepo
 	//=================================================================================================================
-	"npc_dota_hero_meepo_lua"
+	"npc_dota_hero_meepo_kobold"
 	{
 		"override_hero"					"npc_dota_hero_meepo"			// Hero to override
-		"Ability1"				"meepo_earthbind_ts_example"					// Ability 1
-		"Ability2"  			""
+		"Ability1"				"meepo_shovel_strike_ts"					// Ability 1
+		"Ability2"  			"meepo_earthbind_ts_example"
 		"Ability3"  			""
 		"Ability4"  			""
 		"Ability5"  			""

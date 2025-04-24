@@ -3,13 +3,12 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 2,["11"] = 2,["12"] = 4,["13"] = 12,["14"] = 13,["15"] = 12,["17"] = 25,["18"] = 28,["19"] = 28,["20"] = 28,["21"] = 28,["22"] = 28,["23"] = 29,["24"] = 29,["25"] = 29,["26"] = 29,["27"] = 29,["28"] = 32,["29"] = 32,["30"] = 32,["31"] = 33,["32"] = 36,["33"] = 37,["34"] = 45,["35"] = 46,["36"] = 47,["38"] = 32,["39"] = 32,["40"] = 24,["41"] = 14,["42"] = 15,["43"] = 16,["44"] = 14,["45"] = 19,["46"] = 21,["47"] = 19,["48"] = 52,["49"] = 53,["50"] = 54,["51"] = 56,["52"] = 57,["53"] = 52,["54"] = 60,["55"] = 61,["56"] = 70,["57"] = 72,["58"] = 73,["59"] = 73,["60"] = 73,["61"] = 74,["62"] = 73,["63"] = 73,["66"] = 80,["67"] = 81,["68"] = 81,["69"] = 81,["70"] = 81,["72"] = 60,["73"] = 85,["74"] = 86,["75"] = 85,["76"] = 92,["77"] = 93,["78"] = 92,["79"] = 98,["80"] = 101,["81"] = 113,["82"] = 114,["83"] = 115,["84"] = 116,["85"] = 116,["86"] = 116,["87"] = 116,["88"] = 116,["89"] = 116,["90"] = 116,["91"] = 116,["92"] = 116,["93"] = 116,["94"] = 116,["95"] = 120,["96"] = 121,["98"] = 115,["100"] = 98,["101"] = 12,["102"] = 13});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 4,["11"] = 5,["12"] = 13,["13"] = 14,["14"] = 13,["16"] = 26,["17"] = 29,["18"] = 29,["19"] = 29,["20"] = 29,["21"] = 29,["22"] = 30,["23"] = 30,["24"] = 30,["25"] = 30,["26"] = 30,["27"] = 31,["28"] = 31,["29"] = 31,["30"] = 31,["31"] = 31,["32"] = 34,["33"] = 34,["34"] = 34,["35"] = 35,["36"] = 38,["37"] = 34,["38"] = 34,["39"] = 25,["40"] = 15,["41"] = 16,["42"] = 17,["43"] = 15,["44"] = 20,["45"] = 22,["46"] = 20,["47"] = 55,["48"] = 56,["49"] = 57,["50"] = 62,["51"] = 55,["52"] = 65,["53"] = 66,["54"] = 67,["55"] = 68,["56"] = 69,["57"] = 70,["58"] = 71,["59"] = 72,["60"] = 76,["61"] = 77,["62"] = 78,["63"] = 79,["64"] = 80,["65"] = 81,["66"] = 82,["67"] = 86,["68"] = 87,["69"] = 88,["70"] = 94,["71"] = 96,["73"] = 65,["74"] = 100,["75"] = 101,["76"] = 110,["77"] = 112,["78"] = 113,["79"] = 113,["80"] = 113,["81"] = 114,["82"] = 113,["83"] = 113,["86"] = 120,["87"] = 121,["88"] = 121,["89"] = 121,["90"] = 121,["92"] = 100,["93"] = 125,["94"] = 126,["95"] = 125,["96"] = 132,["97"] = 133,["98"] = 132,["99"] = 137,["100"] = 139,["101"] = 142,["102"] = 143,["104"] = 145,["106"] = 137,["107"] = 148,["108"] = 155,["109"] = 167,["110"] = 168,["111"] = 169,["112"] = 170,["113"] = 170,["114"] = 170,["115"] = 170,["116"] = 170,["117"] = 170,["118"] = 170,["119"] = 170,["120"] = 170,["121"] = 170,["122"] = 170,["123"] = 174,["124"] = 175,["126"] = 169,["128"] = 148,["129"] = 13,["130"] = 14});
 local ____exports = {}
 local ____tstl_2Dutils = require("lib.tstl-utils")
 local reloadable = ____tstl_2Dutils.reloadable
-local ____modifier_panic = require("modifiers.modifier_panic")
-local modifier_panic = ____modifier_panic.modifier_panic
-local heroSelectionTime = 20
+local heroSelectionTime = 10
+local forceHero = "meepo"
 ____exports.GameMode = __TS__Class()
 local GameMode = ____exports.GameMode
 GameMode.name = "GameMode"
@@ -25,16 +24,16 @@ function GameMode.prototype.____constructor(self)
         function(event) return self:OnNpcSpawned(event) end,
         nil
     )
+    ListenToGameEvent(
+        "dota_inventory_item_added",
+        function(event) return self:OnHeroScrollGain(event) end,
+        nil
+    )
     CustomGameEventManager:RegisterListener(
         "ui_panel_closed",
         function(_, data)
             print(("Player " .. tostring(data.PlayerID)) .. " has closed their UI panel.")
             local player = PlayerResource:GetPlayer(data.PlayerID)
-            CustomGameEventManager:Send_ServerToPlayer(player, "example_event", {myNumber = 42, myBoolean = true, myString = "Hello!", myArrayOfNumbers = {1.414, 2.718, 3.142}})
-            local hero = player:GetAssignedHero()
-            if hero ~= nil then
-                hero:AddNewModifier(hero, nil, modifier_panic.name, {duration = 5})
-            end
         end
     )
 end
@@ -47,9 +46,30 @@ function GameMode.Activate()
 end
 function GameMode.prototype.configure(self)
     GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 4)
-    GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 0)
-    GameRules:SetShowcaseTime(0)
+    GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 4)
+    self:CustomGameSetup()
+end
+function GameMode.prototype.CustomGameSetup(self)
+    GameRules:EnableCustomGameSetupAutoLaunch(true)
+    GameRules:SetCustomGameSetupAutoLaunchDelay(0)
     GameRules:SetHeroSelectionTime(heroSelectionTime)
+    GameRules:SetStrategyTime(0)
+    GameRules:SetPreGameTime(0)
+    GameRules:SetShowcaseTime(0)
+    GameRules:SetPostGameTime(5)
+    local GameMode = GameRules:GetGameModeEntity()
+    GameMode:SetAnnouncerDisabled(true)
+    GameMode:SetKillingSpreeAnnouncerDisabled(true)
+    GameMode:SetDaynightCycleDisabled(true)
+    GameMode:DisableHudFlip(true)
+    GameMode:SetDeathOverlayDisabled(true)
+    GameMode:SetWeatherEffectsDisabled(true)
+    GameRules:SetCustomGameAllowHeroPickMusic(false)
+    GameRules:SetCustomGameAllowMusicAtGameStart(false)
+    GameRules:SetCustomGameAllowBattleMusic(false)
+    if forceHero ~= nil then
+        GameMode:SetCustomGameForceHero(forceHero)
+    end
 end
 function GameMode.prototype.OnStateChange(self)
     local state = GameRules:State_Get()
@@ -75,6 +95,14 @@ function GameMode.prototype.StartGame(self)
 end
 function GameMode.prototype.Reload(self)
     print("Script reloaded!")
+end
+function GameMode.prototype.OnHeroScrollGain(self, event)
+    local item = EntIndexToHScript(event.item_entindex)
+    if item:GetAbilityName() == "item_tpscroll" and item:GetPurchaser() == nil then
+        return false
+    else
+        return true
+    end
 end
 function GameMode.prototype.OnNpcSpawned(self, event)
     local npc = EntIndexToHScript(event.entindex)

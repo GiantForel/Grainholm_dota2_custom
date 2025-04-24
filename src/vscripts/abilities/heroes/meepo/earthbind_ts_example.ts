@@ -27,6 +27,14 @@ export class meepo_earthbind_ts_example extends BaseAbility {
     OnAbilityPhaseInterrupted() {
         this.GetCaster().StopSound("Hero_Meepo.Earthbind.Cast");
     }
+    // ON SPELL START FUNCTION VAR
+    //const - A constant. This variable must be assigned a value when it's called. 
+    // This variables can never be reassigned. Useful for variables that should never change, 
+    // such as instances of classes, or definitive results of a function that will be used as is.
+    
+    //let - A standard variable. This variable can be undefined, be assigned immediately, 
+    // or be assigned later. It can be reassigned as many times you need.
+    //  Useful for things that change, such as numerical calculations, or boolean operators.
 
     OnSpellStart() {
         const caster = this.GetCaster();
