@@ -15,6 +15,10 @@ export class GameMode {
     public static Precache(this: void, context: CScriptPrecacheContext) {
         PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context);
         PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context);
+        PrecacheResource("soundfile", "sounds/items/searing_signet.vsnd", context);
+        PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_waveform_splash_a_endcap.vpcf", context);
+        PrecacheResource("particle", "particles/meepo_kobold/test_part.vpcf", context);
+    
     }
 
     public static Activate(this: void) {
@@ -176,6 +180,21 @@ export class GameMode {
                 }
             });
         }
+        // if (npc.IsRealHero() && npc.bFirstSpawned == undefined) {
+        //     npc.bFirstSpawned = true;
+        //     OnHeroInGame(npc);
+        // } else if (npc.GetUnitName() == "npc_dota_neutral_kobold") {
+        //     Timers.CreateTimer(() => {
+        //         const units = FindUnitsInRadius(npc.GetTeamNumber(), npc.GetAbsOrigin(), undefined, 500,
+        //                                         UnitTargetTeam.ENEMY, UnitTargetType.Basic | UnitTargetType.HERO,
+        //                                         UnitTargetFlags.NONE, FindOrder.FIND_ANY_ORDER, false);
+                
+        //         for (const unit of units) {
+        //             unit.ForceKill(true);
+        //         }
+        //     });
+        // }
+        
         
     }
 

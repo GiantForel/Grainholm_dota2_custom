@@ -9,14 +9,14 @@
     //=================================================================================================================
     // Meepo: heal_bolt
     //=================================================================================================================
-     "typescript_skywrath_mage_arcane_bolt"
+     "skywrath_mage_arcane_bolt_ts"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
-        "AbilityTextureName"            "abilities/heroes/lina_witch/skywrath_mage_arcane_bolt.lua"
-        //abilities/heroes/meepo/earthbind_ts_example.lua
-        "ScriptFile"                      "abilities/typescript_skywrath_mage_arcane_bolt"
+        //"ScriptFile"					"abilities/heroes/meepo_kobold/meepo_shovel_strike_ts.lua"
+        "ScriptFile"                    "abilities/heroes/lina_witch/skywrath_mage_arcane_bolt_ts.lua"
+        "AbilityTextureName"            "skywrath_mage_arcane_bolt"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -40,37 +40,32 @@
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
+        "AbilityValues"
         {
-            "01"
+            "bolt_speed"
             {
-            "var_type"                "FIELD_INTEGER"
-            "bolt_speed"          "500"
+            "value"          "500"
             }
 
-            "02"
+            "bolt_vision"
             {
-            "var_type"                "FIELD_INTEGER"
-            "bolt_vision"         "325"
+            "value"        "325"
             }
 
-            "03"
+            "bolt_damage"
             {
-            "var_type"                "FIELD_FLOAT"
-            "bolt_damage"         "60 80 100 120"
+            "value"        "60 80 100 120"
             }
 
-            "04"
+            "mult_damage"
             {
-            "var_type"                "FIELD_FLOAT"
             "int_multiplier"      "1.6"
             "CalculateSpellDamageTooltip" "1"
             }
 
-            "05"
+            "vision_duration5"
             {
-            "var_type"                "FIELD_FLOAT"
-            "vision_duration"     "3.34"
+            "value"     "3.34"
             }
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"

@@ -16,10 +16,10 @@
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
+
 		"BaseClass"						"ability_lua"
-        // script path is /game/scripts/vscripts/...   example - abilities/heroes/meepo/earthbind_ts_example.lua
 		"ScriptFile"					"abilities/heroes/meepo_kobold/meepo_shovel_strike_ts.lua"
-		"AbilityTextureName"			"centaur_warrunner_double_edge"
+		"AbilityTextureName"			"centaur_double_edge"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
 		//"precache"
@@ -36,6 +36,8 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"                  "sounds/items/searing_signet.vsnd"
+
 
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,25 +46,23 @@
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0"
+		"AbilityCooldown"				"0"
 
 		// Damage
 		//-------------------------------------------------------------------------------------------------------------
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
+		"AbilityValues"
 		{
-			"01"
+			"edge_damage"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"edge_damage"					"175 250 325 400"
+				"value"						"25 25 32 40"
+				"DamageTypeTooltip"			"DAMAGE_TYPE_MAGICAL"
 			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"210"
-			}
+			"cooldown" "0"
+			"radius" "300"
+			"effect_duration" "3"
 		}
     }
 

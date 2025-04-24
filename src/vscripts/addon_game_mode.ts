@@ -1,5 +1,8 @@
 import "./lib/timers";
 import { GameMode } from "./GameMode";
+//require('timers')
+//require('barebones')
+
 
 // Connect GameMode.Activate and GameMode.Precache to the dota engine
 Object.assign(getfenv(), {

@@ -22,7 +22,7 @@
 	"npc_dota_hero_lina_witch"
 	{
 		"override_hero"					"npc_dota_hero_lina"			// Hero to override
-		"Ability1"				"typescript_skywrath_mage_arcane_bolt"	
+		"Ability1"				"skywrath_mage_arcane_bolt_ts"	
 		"Ability2"  			""
 		"Ability3"  			""
 		"Ability4"  			""
