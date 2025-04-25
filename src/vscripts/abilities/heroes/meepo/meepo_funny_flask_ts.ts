@@ -8,21 +8,19 @@ export class meepo_funny_flask_ts extends BaseAbility {
     caster: CDOTA_BaseNPC = this.GetCaster();
     funny_duration = this.GetSpecialValueFor("bonus_flask_duration");
     modifier_funny: string = "modifier_meepo_funny_flask_ts";
-
     public static Precache(context: CScriptPrecacheContext) {
-        PrecacheResource("texture", "panorama/images/flask2_png.vtex",context);
-        PrecacheResource("particle", "particles/high_five_mug_travel.vpcf",context);
-        PrecacheResource("sound", "sounds/weapons/hero/brewmaster/cinderbrew_creep.vsnd", context)
+        PrecacheResource("particle", "particles/units/heroes/hero_ringmaster/funnel_cake_ground_anchors.vpcf", context);
+        //PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context)
     }
 
-    sound_cast = "sounds/weapons/hero/brewmaster/cinderbrew_creep.vsnd";
+
+
     OnUpgrade(): void {
-		this.funny_duration = this.GetSpecialValueFor("dig_interval");
+		this.funny_duration = this.GetSpecialValueFor("bonus_flask_duration");
 	}
 
     OnSpellStart() {
-        // Play sound
-        this.caster.EmitSound(this.sound_cast);
+        this.caster.EmitSound("Hero_Brewmaster.CinderBrew.Target");
 
         // Add modifier
         this.caster.AddNewModifier(this.caster, this, this.modifier_funny, { duration: this.funny_duration });

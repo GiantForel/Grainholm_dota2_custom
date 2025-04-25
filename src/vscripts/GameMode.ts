@@ -2,7 +2,7 @@ import { reloadable } from "./lib/tstl-utils";
 import { modifier_panic } from "./modifiers/modifier_panic";
 
 const heroSelectionTime = 10;
-const forceHero = "meepo"
+const forceHero = "meepo";
 
 declare global {
     interface CDOTAGameRules {
@@ -16,14 +16,10 @@ export class GameMode {
         //Meepo Example
         PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context);
         PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context);
+        PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context)
+        PrecacheResource("texture","particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context);
+        PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earhshaker.vsndevts", context)
 
-        //Meepo shovel_strike
-        PrecacheResource("soundfile", "sounds/searing_signet.vsnd", context);
-        //PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_waveform_splash_a_endcap.vpcf", context);
-        PrecacheResource("particle", "particles/units/heroes/hero_spectre/spectre_ambient_blade_fallback_low.vpcf", context);
-        PrecacheResource("particle", "particles/high_five_mug_travel.vpcf",context);
-
-        //Meepo funny_flask
     }
 
     public static Activate(this: void) {
@@ -79,6 +75,7 @@ export class GameMode {
         GameRules.SetPreGameTime(0)
         GameRules.SetShowcaseTime(0)
         GameRules.SetPostGameTime(5)
+        GameRules.SetTimeOfDay(14)
 
         //Disable annoying sound
         //maybe error then create const? I need in lua  local GameMode = GameRules:GetGameModeEntity()
@@ -99,10 +96,12 @@ export class GameMode {
         //remove start scroll ???????????????????
         //SetItemAddedToInventoryFilter(filterFunc: (event: ItemAddedToInventoryFilterEvent) → bool, context: table): nil
         //GameMode.SetItemAddedToInventoryFilter(, this.OnHeroScrollGain)
-
         if (forceHero !== undefined)
         {
             GameMode.SetCustomGameForceHero(forceHero);
+            //GameMode.SetCustomHeroMaxLevel(levelup);
+            
+
         }
     }
 

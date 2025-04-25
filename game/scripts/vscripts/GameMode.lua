@@ -3,7 +3,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 4,["11"] = 5,["12"] = 13,["13"] = 14,["14"] = 13,["16"] = 35,["17"] = 38,["18"] = 38,["19"] = 38,["20"] = 38,["21"] = 38,["22"] = 39,["23"] = 39,["24"] = 39,["25"] = 39,["26"] = 39,["27"] = 40,["28"] = 40,["29"] = 40,["30"] = 40,["31"] = 40,["32"] = 43,["33"] = 43,["34"] = 43,["35"] = 44,["36"] = 47,["37"] = 43,["38"] = 43,["39"] = 34,["40"] = 15,["41"] = 17,["42"] = 18,["43"] = 21,["44"] = 23,["45"] = 24,["46"] = 15,["47"] = 29,["48"] = 31,["49"] = 29,["50"] = 64,["51"] = 65,["52"] = 66,["53"] = 71,["54"] = 64,["55"] = 74,["56"] = 75,["57"] = 76,["58"] = 77,["59"] = 78,["60"] = 79,["61"] = 80,["62"] = 81,["63"] = 85,["64"] = 86,["65"] = 87,["66"] = 88,["67"] = 89,["68"] = 90,["69"] = 91,["70"] = 95,["71"] = 96,["72"] = 97,["73"] = 103,["74"] = 105,["76"] = 74,["77"] = 109,["78"] = 110,["79"] = 119,["80"] = 121,["81"] = 122,["82"] = 122,["83"] = 122,["84"] = 123,["85"] = 122,["86"] = 122,["89"] = 129,["90"] = 130,["91"] = 130,["92"] = 130,["93"] = 130,["95"] = 109,["96"] = 134,["97"] = 135,["98"] = 134,["99"] = 141,["100"] = 142,["101"] = 141,["102"] = 146,["103"] = 148,["104"] = 151,["105"] = 152,["107"] = 154,["109"] = 146,["110"] = 157,["111"] = 164,["112"] = 176,["113"] = 177,["114"] = 178,["115"] = 179,["116"] = 179,["117"] = 179,["118"] = 179,["119"] = 179,["120"] = 179,["121"] = 179,["122"] = 179,["123"] = 179,["124"] = 179,["125"] = 179,["126"] = 183,["127"] = 184,["129"] = 178,["131"] = 157,["132"] = 13,["133"] = 14});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 4,["11"] = 5,["12"] = 13,["13"] = 14,["14"] = 13,["16"] = 31,["17"] = 34,["18"] = 34,["19"] = 34,["20"] = 34,["21"] = 34,["22"] = 35,["23"] = 35,["24"] = 35,["25"] = 35,["26"] = 35,["27"] = 36,["28"] = 36,["29"] = 36,["30"] = 36,["31"] = 36,["32"] = 39,["33"] = 39,["34"] = 39,["35"] = 40,["36"] = 43,["37"] = 39,["38"] = 39,["39"] = 30,["40"] = 15,["41"] = 17,["42"] = 18,["43"] = 19,["44"] = 20,["45"] = 21,["46"] = 15,["47"] = 25,["48"] = 27,["49"] = 25,["50"] = 60,["51"] = 61,["52"] = 62,["53"] = 67,["54"] = 60,["55"] = 70,["56"] = 71,["57"] = 72,["58"] = 73,["59"] = 74,["60"] = 75,["61"] = 76,["62"] = 77,["63"] = 78,["64"] = 82,["65"] = 83,["66"] = 84,["67"] = 85,["68"] = 86,["69"] = 87,["70"] = 88,["71"] = 92,["72"] = 93,["73"] = 94,["74"] = 99,["75"] = 101,["77"] = 70,["78"] = 108,["79"] = 109,["80"] = 118,["81"] = 120,["82"] = 121,["83"] = 121,["84"] = 121,["85"] = 122,["86"] = 121,["87"] = 121,["90"] = 128,["91"] = 129,["92"] = 129,["93"] = 129,["94"] = 129,["96"] = 108,["97"] = 133,["98"] = 134,["99"] = 133,["100"] = 140,["101"] = 141,["102"] = 140,["103"] = 145,["104"] = 147,["105"] = 150,["106"] = 151,["108"] = 153,["110"] = 145,["111"] = 156,["112"] = 163,["113"] = 175,["114"] = 176,["115"] = 177,["116"] = 178,["117"] = 178,["118"] = 178,["119"] = 178,["120"] = 178,["121"] = 178,["122"] = 178,["123"] = 178,["124"] = 178,["125"] = 178,["126"] = 178,["127"] = 182,["128"] = 183,["130"] = 177,["132"] = 156,["133"] = 13,["134"] = 14});
 local ____exports = {}
 local ____tstl_2Dutils = require("lib.tstl-utils")
 local reloadable = ____tstl_2Dutils.reloadable
@@ -40,9 +40,9 @@ end
 function GameMode.Precache(context)
     PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context)
-    PrecacheResource("soundfile", "sounds/searing_signet.vsnd", context)
-    PrecacheResource("particle", "particles/units/heroes/hero_spectre/spectre_ambient_blade_fallback_low.vpcf", context)
-    PrecacheResource("particle", "particles/high_five_mug_travel.vpcf", context)
+    PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts", context)
+    PrecacheResource("texture", "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context)
+    PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earhshaker.vsndevts", context)
 end
 function GameMode.Activate()
     GameRules.Addon = __TS__New(____exports.GameMode)
@@ -60,6 +60,7 @@ function GameMode.prototype.CustomGameSetup(self)
     GameRules:SetPreGameTime(0)
     GameRules:SetShowcaseTime(0)
     GameRules:SetPostGameTime(5)
+    GameRules:SetTimeOfDay(14)
     local GameMode = GameRules:GetGameModeEntity()
     GameMode:SetAnnouncerDisabled(true)
     GameMode:SetKillingSpreeAnnouncerDisabled(true)

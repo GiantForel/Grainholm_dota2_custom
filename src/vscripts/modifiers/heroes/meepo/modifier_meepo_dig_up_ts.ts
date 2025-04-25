@@ -5,7 +5,7 @@ export class modifier_meepo_dig_up_ts extends BaseModifier {
     caster: CDOTA_BaseNPC = this.GetCaster() as CDOTA_BaseNPC;
     ability: CDOTABaseAbility = this.GetAbility() as CDOTABaseAbility;
     parent: CDOTA_BaseNPC = this.GetParent();
-    particle_buff: string = "particles/high_five_mug_travel.vpcf";
+    particle_buff: string = "particles/units/heroes/heroes_underlord/abyssal_underlord_dust_impact_loadout.vpcf";
 	interval?:number;
 
 

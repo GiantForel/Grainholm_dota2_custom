@@ -17,7 +17,7 @@ function modifier_meepo_dig_up_ts.prototype.____constructor(self, ...)
     self.caster = self:GetCaster()
     self.ability = self:GetAbility()
     self.parent = self:GetParent()
-    self.particle_buff = "particles/high_five_mug_travel.vpcf"
+    self.particle_buff = "particles/units/heroes/heroes_underlord/abyssal_underlord_dust_impact_loadout.vpcf"
 end
 function modifier_meepo_dig_up_ts.prototype.IsHidden(self)
     return false

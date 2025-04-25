@@ -3,7 +3,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["15"] = 7,["16"] = 8,["17"] = 9,["18"] = 7,["19"] = 11,["20"] = 13,["21"] = 14,["22"] = 16,["23"] = 17,["24"] = 18,["25"] = 18,["26"] = 18,["27"] = 18,["28"] = 18,["29"] = 18,["30"] = 18,["31"] = 18,["32"] = 18,["33"] = 18,["34"] = 18,["35"] = 29,["36"] = 31,["37"] = 32,["38"] = 32,["39"] = 32,["40"] = 32,["41"] = 32,["42"] = 32,["43"] = 31,["45"] = 43,["46"] = 46,["47"] = 46,["48"] = 46,["49"] = 47,["50"] = 57,["51"] = 57,["52"] = 57,["53"] = 57,["54"] = 57,["55"] = 62,["56"] = 62,["57"] = 62,["58"] = 62,["59"] = 62,["60"] = 68,["61"] = 69,["62"] = 69,["63"] = 69,["64"] = 70,["65"] = 71,["66"] = 69,["67"] = 69,["68"] = 46,["69"] = 46,["70"] = 11,["71"] = 4,["72"] = 4,["73"] = 4,["74"] = 3,["77"] = 4});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["16"] = 4,["17"] = 10,["18"] = 3,["19"] = 6,["20"] = 7,["21"] = 6,["22"] = 13,["23"] = 14,["24"] = 15,["25"] = 13,["26"] = 17,["27"] = 19,["28"] = 20,["29"] = 22,["30"] = 23,["31"] = 24,["32"] = 24,["33"] = 24,["34"] = 24,["35"] = 24,["36"] = 24,["37"] = 24,["38"] = 24,["39"] = 24,["40"] = 24,["41"] = 24,["42"] = 35,["43"] = 37,["44"] = 38,["45"] = 38,["46"] = 38,["47"] = 38,["48"] = 38,["49"] = 38,["50"] = 37,["52"] = 49,["53"] = 52,["54"] = 52,["55"] = 52,["56"] = 53,["57"] = 63,["58"] = 63,["59"] = 63,["60"] = 63,["61"] = 63,["62"] = 75,["63"] = 76,["64"] = 76,["65"] = 76,["66"] = 77,["67"] = 78,["68"] = 76,["69"] = 76,["70"] = 52,["71"] = 52,["72"] = 17,["73"] = 4,["74"] = 4,["75"] = 4,["76"] = 3,["79"] = 4});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseAbility = ____dota_ts_adapter.BaseAbility
@@ -12,6 +12,13 @@ ____exports.meepo_shovel_strike_ts = __TS__Class()
 local meepo_shovel_strike_ts = ____exports.meepo_shovel_strike_ts
 meepo_shovel_strike_ts.name = "meepo_shovel_strike_ts"
 __TS__ClassExtends(meepo_shovel_strike_ts, BaseAbility)
+function meepo_shovel_strike_ts.prototype.____constructor(self, ...)
+    BaseAbility.prototype.____constructor(self, ...)
+    self.sound_cast = "Hero_Brewmaster.ThunderClap"
+end
+function meepo_shovel_strike_ts.Precache(self, context)
+    PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context)
+end
 function meepo_shovel_strike_ts.prototype.GetCooldown(self)
     local cooldown = self:GetSpecialValueFor("cooldown")
     return cooldown
@@ -42,20 +49,15 @@ function meepo_shovel_strike_ts.prototype.OnSpellStart(self)
             damage_flags = DOTA_DAMAGE_FLAG_NONE
         })
     end
-    target:EmitSound("sounds/searing_signet.vsnd")
+    target:EmitSound(self.sound_cast)
     Timers:CreateTimer(
         0.01,
         function()
-            local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", PATTACH_WORLDORIGIN, nil)
-            ParticleManager:SetParticleControl(
-                effect,
-                2,
-                target:GetAbsOrigin()
-            )
+            local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", PATTACH_WORLDORIGIN, nil)
             ParticleManager:SetParticleControl(
                 effect,
                 0,
-                Vector(radius, radius, radius)
+                target:GetAbsOrigin()
             )
             local duration = self:GetSpecialValueFor("particle_duration")
             Timers:CreateTimer(

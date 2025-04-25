@@ -26,7 +26,7 @@ function meepo_dig_up_ts.prototype.____constructor(self, ...)
     self.sound_spawn = ""
 end
 function meepo_dig_up_ts.prototype.Precache(self, context)
-    PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_magnetic_tempest_start.vpcf", context)
+    PrecacheResource("particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_dust_impact_loadout.vpcf", context)
     PrecacheResource("sound", "sounds/weapons/hero/centaur/retaliate_cast.vsnd", context)
 end
 function meepo_dig_up_ts.prototype.GetChannelTime(self)

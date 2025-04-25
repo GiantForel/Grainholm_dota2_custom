@@ -3,6 +3,12 @@ import { BaseAbility, registerAbility } from "../../../lib/dota_ts_adapter";
 @registerAbility()
 export class meepo_shovel_strike_ts extends BaseAbility {
     particle?: ParticleID;
+    public static Precache(context: CScriptPrecacheContext) {
+        PrecacheResource("particle","particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context);
+
+    }
+    sound_cast: string = "Hero_Brewmaster.ThunderClap"
+
 
     GetCooldown(){
         let cooldown = this.GetSpecialValueFor("cooldown");
@@ -40,12 +46,12 @@ export class meepo_shovel_strike_ts extends BaseAbility {
             );
         }
         
-        target.EmitSound("sounds/searing_signet.vsnd");
+        target.EmitSound(this.sound_cast);
 
         //Particle. Need to wait one frame for the older particle to be destroyed
         Timers.CreateTimer(0.01, ()=>{
             const effect = ParticleManager.CreateParticle(
-                "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
+                "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf",
                 ParticleAttachment.WORLDORIGIN,
                 undefined,
             );
@@ -56,14 +62,15 @@ export class meepo_shovel_strike_ts extends BaseAbility {
             //color - 3
             ParticleManager.SetParticleControl(
                 effect,
-                2,
-                target.GetAbsOrigin(),
-            );
-            ParticleManager.SetParticleControl(
-                effect,
                 0,
-                Vector(radius,radius,radius),
+                target.GetAbsOrigin(),
+                //Vector(4,4,4)
             );
+            //ParticleManager.SetParticleControl(
+            //    effect,
+             //   0,
+            //    Vector(radius,radius,radius),
+            //);
             
             const duration = this.GetSpecialValueFor("particle_duration");
             Timers.CreateTimer(duration, ()=> {

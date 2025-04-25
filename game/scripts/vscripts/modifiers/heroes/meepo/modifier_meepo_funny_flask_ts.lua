@@ -3,7 +3,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["16"] = 4,["17"] = 5,["18"] = 6,["19"] = 7,["20"] = 8,["21"] = 3,["22"] = 13,["23"] = 14,["24"] = 13,["25"] = 16,["26"] = 17,["27"] = 16,["28"] = 19,["29"] = 20,["30"] = 19,["31"] = 23,["32"] = 25,["33"] = 26,["34"] = 23,["35"] = 28,["36"] = 29,["37"] = 28,["38"] = 31,["39"] = 32,["40"] = 31,["41"] = 35,["42"] = 36,["43"] = 35,["44"] = 41,["45"] = 42,["46"] = 41,["47"] = 45,["48"] = 46,["49"] = 45,["50"] = 4,["51"] = 4,["52"] = 4,["53"] = 3,["56"] = 4});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["16"] = 4,["17"] = 5,["18"] = 6,["19"] = 7,["20"] = 8,["21"] = 9,["22"] = 3,["23"] = 13,["24"] = 14,["25"] = 13,["26"] = 16,["27"] = 17,["28"] = 16,["29"] = 19,["30"] = 20,["31"] = 19,["32"] = 23,["33"] = 24,["34"] = 26,["35"] = 27,["36"] = 29,["37"] = 34,["38"] = 34,["39"] = 34,["40"] = 34,["41"] = 34,["42"] = 23,["43"] = 43,["44"] = 44,["45"] = 43,["46"] = 46,["47"] = 47,["48"] = 46,["49"] = 50,["50"] = 51,["51"] = 50,["52"] = 56,["53"] = 57,["54"] = 56,["55"] = 60,["56"] = 61,["57"] = 60,["58"] = 4,["59"] = 4,["60"] = 4,["61"] = 3,["64"] = 4});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseModifier = ____dota_ts_adapter.BaseModifier
@@ -17,7 +17,8 @@ function modifier_meepo_funny_flask_ts.prototype.____constructor(self, ...)
     self.caster = self:GetCaster()
     self.ability = self:GetAbility()
     self.parent = self:GetParent()
-    self.particle_buff = "particles/high_five_mug_travel.vpcf"
+    self.particle_buff = "particles/units/heroes/hero_ringmaster/funnel_cake_ground_anchors.vpcf"
+    self.sound = "Hero_Alchemist.ChemicalRage.Cast"
 end
 function modifier_meepo_funny_flask_ts.prototype.IsHidden(self)
     return false
@@ -29,8 +30,15 @@ function modifier_meepo_funny_flask_ts.prototype.IsPurgable(self)
     return true
 end
 function modifier_meepo_funny_flask_ts.prototype.OnCreated(self)
+    self.caster:EmitSound("Hero_Brewmaster.Brawler.Crit")
     self.bonus_atack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
     self.bonus_incoming_damage = self.ability:GetSpecialValueFor("bonus_incoming_damage_percent")
+    local effect = ParticleManager:CreateParticle(self.particle_buff, PATTACH_ABSORIGIN_FOLLOW, nil)
+    ParticleManager:SetParticleControl(
+        effect,
+        0,
+        self.caster:GetAbsOrigin()
+    )
 end
 function modifier_meepo_funny_flask_ts.prototype.GetEffectName(self)
     return self.particle_buff
