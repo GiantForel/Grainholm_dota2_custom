@@ -7,7 +7,7 @@
 "DOTAAbilities"
 {
     //=================================================================================================================
-    // Meepo: Earthbind
+    // Meepo_Kobold Shovel_Strike
     //=================================================================================================================
     "meepo_shovel_strike_ts"
     {
@@ -18,7 +18,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/heroes/meepo_kobold/meepo_shovel_strike_ts.lua"
+		"ScriptFile"					"abilities/heroes/meepo/meepo_shovel_strike_ts.lua"
 		"AbilityTextureName"			"centaur_double_edge"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
@@ -62,8 +62,107 @@
 			}
 			"cooldown" "0"
 			"radius" "300"
-			"effect_duration" "3"
+			"particle_duration" "1"
 		}
     }
+
+	//=================================================================================================================
+    // Meepo_Kobold Funny_Flask
+    //=================================================================================================================
+    "meepo_funny_flask_ts"
+    {
+
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/heroes/meepo/meepo_funny_flask_ts.lua"
+		"AbilityTextureName"			"brewmaster_drunken_brawler"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		//"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY	"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"                  "sounds/searing_signet.vsnd"
+
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10 9 8 7"
+		"AbilityManaCost"				"40 50 60 70"
+	
+		// Values
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityValues"
+		{
+			"bonus_flask_duration"          "12 15 17 25"
+			"bonus_attack_speed"			"40 50 60 70"
+			"bonus_incoming_damage_percent"			"-15 -11 -9 -7"
+		}
+    }
+
+	//=================================================================================================================
+	// Meepo_Kobold Dig_Up  origin -> Broodmother's Spiderling: Spawn Spiderites
+	//=================================================================================================================
+	"meepo_dig_up_ts"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"broodmother_spawn_spiderite"
+		"ScriptFile"					"abilities/heroes/meepo/meepo_dig_up_ts.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL "
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityChannelTime" "7.0 10.0 15.0 20.0"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		//change it
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"00"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"dig_channel_time" "7.0 10.0 15.0 20.0"
+			"dig_damage"   "30 40 45 50"
+			"dig_mana_per_dig" "20 40 50 60"
+			"dig_interval" "1.0 0.7 0.6 0.4"
+			"dig_radius" 	"300"
+
+			"rune_duration"			"60.0"
+			"chance_dig_up" "2 3 4 4"
+			"max_rune" 			"5"
+			"dig_particle_duration" "0.1"
+
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_3"
+	}
+
 
 }

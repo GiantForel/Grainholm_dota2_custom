@@ -18,7 +18,7 @@ export class skywrath_mage_arcane_bolt_ts extends BaseAbility
 
         EmitSoundOn(this.sound_cast, this.GetCaster());
 
-        ProjectileManager.CreateTrackingProjectile(
+        let proj = ProjectileManager.CreateTrackingProjectile(
             {
                 Ability: this,
                 EffectName: this.projectile_arcane_bolt,

@@ -13,12 +13,17 @@ declare global {
 @reloadable
 export class GameMode {
     public static Precache(this: void, context: CScriptPrecacheContext) {
+        //Meepo Example
         PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf", context);
         PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts", context);
-        PrecacheResource("soundfile", "sounds/items/searing_signet.vsnd", context);
-        PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_waveform_splash_a_endcap.vpcf", context);
-        PrecacheResource("particle", "particles/meepo_kobold/test_part.vpcf", context);
-    
+
+        //Meepo shovel_strike
+        PrecacheResource("soundfile", "sounds/searing_signet.vsnd", context);
+        //PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_waveform_splash_a_endcap.vpcf", context);
+        PrecacheResource("particle", "particles/units/heroes/hero_spectre/spectre_ambient_blade_fallback_low.vpcf", context);
+        PrecacheResource("particle", "particles/high_five_mug_travel.vpcf",context);
+
+        //Meepo funny_flask
     }
 
     public static Activate(this: void) {

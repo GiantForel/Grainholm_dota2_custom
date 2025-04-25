@@ -40,50 +40,38 @@ export class meepo_shovel_strike_ts extends BaseAbility {
             );
         }
         
-        target.EmitSound("sounds/items/searing_signet.vsnd");
+        target.EmitSound("sounds/searing_signet.vsnd");
 
-        const effect = ParticleManager.CreateParticle(
-            "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
-            ParticleAttachment.WORLDORIGIN,
-            undefined,
-        );
-        const effect2 = ParticleManager.CreateParticle(
-            "particles/units/heroes/hero_spectre/spectre_ambient_blade_fallback_low.vpcf",
-            ParticleAttachment.WORLDORIGIN,
-            undefined,
-        );
-        ParticleManager.SetParticleControl(
-            effect2,
-            3,
-            caster.GetAbsOrigin(),
-        );
+        //Particle. Need to wait one frame for the older particle to be destroyed
+        Timers.CreateTimer(0.01, ()=>{
+            const effect = ParticleManager.CreateParticle(
+                "particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf",
+                ParticleAttachment.WORLDORIGIN,
+                undefined,
+            );
 
-        ParticleManager.SetParticleControl(
-            effect,
-            0,
-            target.GetAbsOrigin(),
-        );
-        ParticleManager.SetParticleControl(
-            effect,
-            1,
-            Vector(radius+300,radius+300,radius+300),
-        );
-        const duration = this.GetSpecialValueFor("effect_duration");
-
-        
-        Timers.CreateTimer(duration, ()=> {
-            ParticleManager.DestroyParticle(effect, false);
-            ParticleManager.ReleaseParticleIndex(effect!);
-            ParticleManager.DestroyParticle(effect2, false);
-            ParticleManager.ReleaseParticleIndex(effect2!);
+            //position - 0
+            //direction - 1
+            //scale -2
+            //color - 3
+            ParticleManager.SetParticleControl(
+                effect,
+                2,
+                target.GetAbsOrigin(),
+            );
+            ParticleManager.SetParticleControl(
+                effect,
+                0,
+                Vector(radius,radius,radius),
+            );
             
+            const duration = this.GetSpecialValueFor("particle_duration");
+            Timers.CreateTimer(duration, ()=> {
+                ParticleManager.DestroyParticle(effect, false);
+                ParticleManager.ReleaseParticleIndex(effect!); 
+            })
+    
         })
-
-        // CreateParticle(
-        //     particleName: string,
-        //     particleAttach: ParticleAttachment_t,
-        //     owner: CBaseEntity | undefined,
-        // ): ParticleID;
     }
 
 }

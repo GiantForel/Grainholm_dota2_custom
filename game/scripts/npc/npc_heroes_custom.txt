@@ -36,9 +36,9 @@
 	"npc_dota_hero_meepo_kobold"
 	{
 		"override_hero"					"npc_dota_hero_meepo"			// Hero to override
-		"Ability1"				"meepo_shovel_strike_ts"					// Ability 1
-		"Ability2"  			"meepo_earthbind_ts_example"
-		"Ability3"  			""
+		"Ability1"				"meepo_shovel_strike_ts"			// A 1
+		"Ability2"  			"meepo_funny_flask_ts"				// A 2
+		"Ability3"  			"meepo_dig_up_ts"					// A 3
 		"Ability4"  			""
 		"Ability5"  			""
 		"Ability6"  			""
