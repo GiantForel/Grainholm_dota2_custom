@@ -3,7 +3,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["16"] = 4,["17"] = 5,["18"] = 6,["19"] = 7,["20"] = 8,["21"] = 9,["22"] = 3,["23"] = 13,["24"] = 14,["25"] = 13,["26"] = 16,["27"] = 17,["28"] = 16,["29"] = 19,["30"] = 20,["31"] = 19,["32"] = 23,["33"] = 24,["34"] = 26,["35"] = 27,["36"] = 29,["37"] = 34,["38"] = 34,["39"] = 34,["40"] = 34,["41"] = 34,["42"] = 23,["43"] = 43,["44"] = 44,["45"] = 43,["46"] = 46,["47"] = 47,["48"] = 46,["49"] = 50,["50"] = 51,["51"] = 50,["52"] = 56,["53"] = 57,["54"] = 56,["55"] = 60,["56"] = 61,["57"] = 60,["58"] = 4,["59"] = 4,["60"] = 4,["61"] = 3,["64"] = 4});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 3,["12"] = 4,["13"] = 3,["14"] = 4,["16"] = 4,["17"] = 5,["18"] = 6,["19"] = 7,["20"] = 8,["21"] = 9,["22"] = 3,["23"] = 13,["24"] = 14,["25"] = 13,["26"] = 16,["27"] = 17,["28"] = 16,["29"] = 19,["30"] = 20,["31"] = 19,["32"] = 23,["33"] = 26,["34"] = 27,["35"] = 29,["36"] = 34,["37"] = 34,["38"] = 34,["39"] = 34,["40"] = 34,["41"] = 23,["42"] = 43,["43"] = 44,["44"] = 43,["45"] = 47,["46"] = 48,["47"] = 47,["48"] = 50,["49"] = 51,["50"] = 50,["51"] = 54,["52"] = 55,["53"] = 54,["54"] = 60,["55"] = 61,["56"] = 60,["57"] = 64,["58"] = 65,["59"] = 64,["60"] = 4,["61"] = 4,["62"] = 4,["63"] = 3,["66"] = 4});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseModifier = ____dota_ts_adapter.BaseModifier
@@ -30,7 +30,6 @@ function modifier_meepo_funny_flask_ts.prototype.IsPurgable(self)
     return true
 end
 function modifier_meepo_funny_flask_ts.prototype.OnCreated(self)
-    self.caster:EmitSound("Hero_Brewmaster.Brawler.Crit")
     self.bonus_atack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
     self.bonus_incoming_damage = self.ability:GetSpecialValueFor("bonus_incoming_damage_percent")
     local effect = ParticleManager:CreateParticle(self.particle_buff, PATTACH_ABSORIGIN_FOLLOW, nil)
@@ -39,6 +38,9 @@ function modifier_meepo_funny_flask_ts.prototype.OnCreated(self)
         0,
         self.caster:GetAbsOrigin()
     )
+end
+function modifier_meepo_funny_flask_ts.prototype.OnIntervalThink(self)
+    self.caster:EmitSound("Hero_Brewmaster.Brawler.Crit")
 end
 function modifier_meepo_funny_flask_ts.prototype.GetEffectName(self)
     return self.particle_buff

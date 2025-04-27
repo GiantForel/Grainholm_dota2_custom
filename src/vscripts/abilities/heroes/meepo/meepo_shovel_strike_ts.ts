@@ -4,7 +4,7 @@ import { BaseAbility, registerAbility } from "../../../lib/dota_ts_adapter";
 export class meepo_shovel_strike_ts extends BaseAbility {
     particle?: ParticleID;
     public static Precache(context: CScriptPrecacheContext) {
-        PrecacheResource("particle","particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context);
+        //PrecacheResource("particle","particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_ripple.vpcf", context);
 
     }
     sound_cast: string = "Hero_Brewmaster.ThunderClap"
@@ -76,7 +76,7 @@ export class meepo_shovel_strike_ts extends BaseAbility {
             Timers.CreateTimer(duration, ()=> {
                 ParticleManager.DestroyParticle(effect, false);
                 ParticleManager.ReleaseParticleIndex(effect!); 
-            })
+            });
     
         })
     }

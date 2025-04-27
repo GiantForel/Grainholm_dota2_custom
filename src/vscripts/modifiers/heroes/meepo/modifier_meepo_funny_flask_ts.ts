@@ -1,4 +1,4 @@
-import { BaseModifier, registerModifier } from "../../../lib/dota_ts_adapter";
+import {BaseModifier, registerModifier } from "../../../lib/dota_ts_adapter";
 
 @registerModifier()
 export class modifier_meepo_funny_flask_ts extends BaseModifier {
@@ -20,8 +20,8 @@ export class modifier_meepo_funny_flask_ts extends BaseModifier {
 		return true;
 	}
 
-    OnCreated(): void {
-		this.caster.EmitSound("Hero_Brewmaster.Brawler.Crit");
+    OnCreated() {
+		//this.caster.EmitSound("Hero_Brewmaster.Brawler.Crit");
 		// Modifier specials
 		this.bonus_atack_speed = this.ability.GetSpecialValueFor("bonus_attack_speed");
 		this.bonus_incoming_damage = this.ability.GetSpecialValueFor("bonus_incoming_damage_percent");
@@ -40,6 +40,10 @@ export class modifier_meepo_funny_flask_ts extends BaseModifier {
 		//})
 
 	}
+	OnIntervalThink() {
+		this.caster.EmitSound("Hero_Brewmaster.Brawler.Crit");
+	}
+
     GetEffectName(): string {
 		return this.particle_buff;
 	}

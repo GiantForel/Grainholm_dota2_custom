@@ -3,12 +3,13 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 8,["9"] = 8,["10"] = 8,["11"] = 9,["12"] = 11,["13"] = 12,["14"] = 11,["15"] = 12,["17"] = 12,["18"] = 14,["19"] = 15,["20"] = 16,["21"] = 20,["22"] = 21,["23"] = 22,["24"] = 27,["25"] = 34,["26"] = 35,["27"] = 11,["28"] = 30,["29"] = 31,["30"] = 32,["31"] = 30,["32"] = 37,["33"] = 12,["34"] = 37,["35"] = 42,["36"] = 43,["37"] = 44,["38"] = 45,["39"] = 46,["40"] = 47,["41"] = 48,["42"] = 49,["43"] = 53,["44"] = 54,["45"] = 42,["46"] = 58,["47"] = 59,["48"] = 58,["49"] = 62,["50"] = 64,["51"] = 62,["52"] = 67,["53"] = 78,["54"] = 67,["55"] = 82,["56"] = 86,["57"] = 87,["58"] = 87,["59"] = 87,["60"] = 87,["61"] = 87,["62"] = 87,["63"] = 87,["64"] = 87,["65"] = 87,["66"] = 87,["67"] = 87,["68"] = 98,["69"] = 100,["70"] = 101,["71"] = 101,["72"] = 101,["73"] = 101,["74"] = 101,["75"] = 101,["76"] = 100,["78"] = 112,["79"] = 112,["80"] = 112,["81"] = 113,["82"] = 123,["83"] = 123,["84"] = 123,["85"] = 123,["86"] = 123,["87"] = 128,["88"] = 128,["89"] = 128,["90"] = 128,["91"] = 128,["92"] = 134,["93"] = 135,["94"] = 135,["95"] = 135,["96"] = 136,["97"] = 137,["98"] = 135,["99"] = 135,["100"] = 112,["101"] = 112,["102"] = 82,["103"] = 12,["104"] = 12,["105"] = 12,["106"] = 11,["109"] = 12});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 8,["9"] = 8,["10"] = 8,["11"] = 10,["12"] = 10,["13"] = 13,["14"] = 14,["15"] = 13,["16"] = 14,["18"] = 14,["19"] = 16,["20"] = 17,["21"] = 18,["22"] = 22,["23"] = 23,["24"] = 29,["25"] = 36,["26"] = 37,["27"] = 13,["28"] = 32,["29"] = 33,["30"] = 34,["31"] = 32,["32"] = 39,["33"] = 40,["34"] = 39,["35"] = 43,["36"] = 14,["37"] = 43,["38"] = 48,["39"] = 49,["40"] = 50,["41"] = 51,["42"] = 52,["43"] = 53,["44"] = 54,["45"] = 55,["46"] = 59,["47"] = 60,["48"] = 48,["49"] = 64,["50"] = 65,["51"] = 64,["52"] = 68,["53"] = 70,["54"] = 68,["55"] = 73,["56"] = 84,["57"] = 73,["58"] = 88,["59"] = 92,["60"] = 93,["61"] = 93,["62"] = 93,["63"] = 93,["64"] = 93,["65"] = 93,["66"] = 93,["67"] = 93,["68"] = 93,["69"] = 93,["70"] = 93,["71"] = 104,["72"] = 106,["73"] = 107,["74"] = 107,["75"] = 107,["76"] = 107,["77"] = 107,["78"] = 107,["79"] = 106,["81"] = 118,["82"] = 118,["83"] = 118,["84"] = 119,["85"] = 129,["86"] = 129,["87"] = 129,["88"] = 129,["89"] = 129,["90"] = 134,["91"] = 134,["92"] = 134,["93"] = 134,["94"] = 134,["95"] = 140,["96"] = 141,["97"] = 141,["98"] = 141,["99"] = 142,["100"] = 143,["101"] = 141,["102"] = 141,["103"] = 118,["104"] = 118,["105"] = 88,["106"] = 14,["107"] = 14,["108"] = 14,["109"] = 13,["112"] = 14});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseAbility = ____dota_ts_adapter.BaseAbility
 local registerAbility = ____dota_ts_adapter.registerAbility
-require("modifiers.heroes.meepo.modifier_meepo_dig_up_ts")
+local ____modifier_meepo_dig_up_ts = require("modifiers.heroes.meepo.modifier_meepo_dig_up_ts")
+local modifier_meepo_dig_up_ts = ____modifier_meepo_dig_up_ts.modifier_meepo_dig_up_ts
 ____exports.meepo_dig_up_ts = __TS__Class()
 local meepo_dig_up_ts = ____exports.meepo_dig_up_ts
 meepo_dig_up_ts.name = "meepo_dig_up_ts"
@@ -20,7 +21,6 @@ function meepo_dig_up_ts.prototype.____constructor(self, ...)
     self.channeling_mode = false
     self.target_point = Vector(0, 0, 0)
     self.damage = 0
-    self.modifier_dig_up = "modifier_meepo_dig_up_ts"
     self.spawn_aoe = 0
     self.sound_dig = "sounds/weapons/hero/centaur/retaliate_cast.vsnd"
     self.sound_spawn = ""
@@ -28,6 +28,9 @@ end
 function meepo_dig_up_ts.prototype.Precache(self, context)
     PrecacheResource("particle", "particles/units/heroes/heroes_underlord/abyssal_underlord_dust_impact_loadout.vpcf", context)
     PrecacheResource("sound", "sounds/weapons/hero/centaur/retaliate_cast.vsnd", context)
+end
+function meepo_dig_up_ts.prototype.GetIntrinsicModifierName(self)
+    return modifier_meepo_dig_up_ts.name
 end
 function meepo_dig_up_ts.prototype.GetChannelTime(self)
     return BaseAbility.prototype.GetChannelTime(self)
@@ -40,7 +43,7 @@ function meepo_dig_up_ts.prototype.OnSpellStart(self)
     self.damage = self:GetSpecialValueFor("dig_damage")
     self.channeling_time = self:GetSpecialValueFor("dig_channel_time")
     EmitSoundOn(self.sound_dig, self.caster)
-    self.caster:AddNewModifier(self.caster, self, self.modifier_dig_up, {duration = self.channeling_time})
+    self.caster:AddNewModifier(self.caster, self, modifier_meepo_dig_up_ts.name, {duration = self.channeling_time})
     self:OnChannelThink(self.delay_between_dig)
 end
 function meepo_dig_up_ts.prototype.GetChannelAnimation(self)

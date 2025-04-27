@@ -6,7 +6,9 @@
 //  in ideal dig up will channeling in 10 sec, and every 1 sec will be chance dig up
 
 import { BaseAbility, registerAbility } from "../../../lib/dota_ts_adapter";
-import "../../../modifiers/heroes/meepo/modifier_meepo_dig_up_ts.ts";
+//import "../../../modifiers/heroes/meepo/modifier_meepo_dig_up_ts.ts";
+import { modifier_meepo_dig_up_ts } from "../../../modifiers/heroes/meepo/modifier_meepo_dig_up_ts";
+
 
 @registerAbility()
 export class meepo_dig_up_ts extends BaseAbility{
@@ -19,7 +21,7 @@ export class meepo_dig_up_ts extends BaseAbility{
     delay_between_dig?: number;
     target_point: Vector = Vector(0,0,0);
     damage: number = 0;
-    modifier_dig_up: string = "modifier_meepo_dig_up_ts";
+    //modifier_dig_up: string = "modifier_meepo_dig_up_ts";
     
 
     // Ability specials
@@ -33,6 +35,10 @@ export class meepo_dig_up_ts extends BaseAbility{
     }
     sound_dig: string = "sounds/weapons/hero/centaur/retaliate_cast.vsnd";
     sound_spawn: string = "";
+
+    GetIntrinsicModifierName(): string {
+		return modifier_meepo_dig_up_ts.name;
+	}
 
     GetChannelTime(): number {
 		// Reimagined: Endless Barrage: Can be set to auto cast to increase the max channel time to x seconds, firing a wave of arrows every y seconds. However, each wave drains z mana. Lasts until no mana is left to fire an additional wave, the channeling is interrupted, or the duration elapses.
@@ -50,7 +56,7 @@ export class meepo_dig_up_ts extends BaseAbility{
         
 
 
-        this.caster.AddNewModifier(this.caster, this, this.modifier_dig_up, { duration: this.channeling_time });
+        this.caster.AddNewModifier(this.caster, this, modifier_meepo_dig_up_ts.name, { duration: this.channeling_time });
         this.OnChannelThink(this.delay_between_dig);
  
     }
